@@ -34,11 +34,12 @@
     }
   ],
   "require": {
-    "php": "~8.4.0",
+    "php": "~8.4.13",
     "premierstacks/php-stack": "@dev"
   },
   "require-dev": {
-    "phpunit/phpunit": "^12.3.7",
+    "phpunit/phpunit": "^12.4.2",
+    "roave/security-advisories": "@dev",
     "premierstacks/php-cs-fixer-stack": "@dev",
     "premierstacks/phpstan-stack": "@dev"
   },
@@ -72,11 +73,15 @@
     }
   ],
   "config": {
+    "sort-packages": true,
     "allow-plugins": {
       "phpstan/extension-installer": true
     },
     "audit": {
       "abandoned": "fail"
+    },
+    "platform": {
+      "php": "8.4.13"
     },
     "platform-check": true
   },
@@ -91,8 +96,16 @@
     "fix:php-cs-fixer": "php-cs-fixer fix",
     "lint:php-cs-fixer": "php-cs-fixer fix --dry-run --diff",
     "stan:phpstan": "phpstan analyse",
-    "start:development": "@php -S 0.0.0.0:8000 -t ./public",
-    "test:coverage": "@php -S 0.0.0.0:8000 -t ./.phpunit.coverage/html",
+    "start:development": [
+      "Composer\\Config::disableProcessTimeout",
+      "@putenv APP_ENV=local",
+      "php -S 0.0.0.0:8080 -t ./public/"
+    ],
+    "start:coverage": [
+      "Composer\\Config::disableProcessTimeout",
+      "@putenv APP_ENV=local",
+      "php -S 0.0.0.0:8080 -t ./.phpunit.coverage/html/"
+    ],
     "test:phpunit": "phpunit"
   }
 }
