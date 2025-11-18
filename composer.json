@@ -1,6 +1,6 @@
 {
-  "name": "premierstacks/php-template",
-  "description": "premierstacks php template",
+  "name": "premierstacks/php-project-template",
+  "description": "premierstacks php project template",
   "type": "project",
   "keywords": [
     "tomchochola",
@@ -8,9 +8,9 @@
     "Tomas Chochola",
     "Tomáš Chochola",
     "premierstacks",
-    "php-template"
+    "php-project-template"
   ],
-  "homepage": "https://github.com/premierstacks/php-template",
+  "homepage": "https://github.com/premierstacks/php-project-template",
   "readme": "./README.md",
   "license": "CC-BY-ND-4.0",
   "authors": [
@@ -23,9 +23,9 @@
   ],
   "support": {
     "email": "chocholatom1997@gmail.com",
-    "issues": "https://github.com/premierstacks/php-template/issues",
-    "source": "https://github.com/premierstacks/php-template.git",
-    "docs": "https://github.com/premierstacks/php-template"
+    "issues": "https://github.com/premierstacks/php-project-template/issues",
+    "source": "https://github.com/premierstacks/php-project-template.git",
+    "docs": "https://github.com/premierstacks/php-project-template"
   },
   "funding": [
     {
@@ -34,18 +34,17 @@
     }
   ],
   "require": {
-    "php": "~8.4.13",
-    "premierstacks/php-stack": "@dev"
+    "php": "~8.4.13"
   },
   "require-dev": {
-    "phpunit/phpunit": "^12.4.2",
+    "phpunit/phpunit": "^12.4.3",
     "roave/security-advisories": "@dev",
     "premierstacks/php-cs-fixer-stack": "@dev",
     "premierstacks/phpstan-stack": "@dev"
   },
   "autoload": {
     "psr-4": {
-      "Premierstacks\\PhpTemplate\\": "./src"
+      "App\\": "./src"
     }
   },
   "autoload-dev": {
@@ -65,11 +64,6 @@
       "type": "vcs",
       "url": "https://github.com/premierstacks/phpstan-stack.git",
       "no-api": true
-    },
-    {
-      "type": "vcs",
-      "url": "https://github.com/premierstacks/php-stack.git",
-      "no-api": true
     }
   ],
   "config": {
@@ -83,29 +77,28 @@
     "platform": {
       "php": "8.4.13"
     },
-    "platform-check": true
+    "platform-check": true,
+    "process-timeout": 0
   },
   "scripts": {
     "composer:audit": "@composer audit",
     "composer:install": "@composer install",
     "composer:platform": "@composer check-platform-reqs",
-    "composer:update": "@composer update",
+    "composer:update": "@composer update --with-all-dependencies",
     "composer:validate": "@composer validate --strict --no-check-all",
     "dump:development": "@composer dump-autoload -o --dev --strict-psr",
     "dump:production": "@composer dump-autoload -a --no-dev --strict-psr",
-    "fix:php-cs-fixer": "php-cs-fixer fix",
-    "lint:php-cs-fixer": "php-cs-fixer fix --dry-run --diff",
-    "stan:phpstan": "phpstan analyse",
+    "fix:php-cs-fixer": "@php php-cs-fixer fix",
+    "lint:php-cs-fixer": "@php php-cs-fixer check",
+    "stan:phpstan": "@php phpstan analyse",
     "start:development": [
-      "Composer\\Config::disableProcessTimeout",
       "@putenv APP_ENV=local",
-      "php -S 0.0.0.0:8080 -t ./public/"
+      "php -S 0.0.0.0:8000 -t ./public/"
     ],
-    "start:coverage": [
-      "Composer\\Config::disableProcessTimeout",
-      "@putenv APP_ENV=local",
-      "php -S 0.0.0.0:8080 -t ./.phpunit.coverage/html/"
-    ],
-    "test:phpunit": "phpunit"
+    "start:coverage": "@php -S 0.0.0.0:8000 -t ./.phpunit.coverage/html",
+    "test:phpunit": "@php phpunit",
+    "post-install-cmd": "@cache:clear",
+    "post-update-cmd": "@cache:clear",
+    "cache:clear": ""
   }
 }

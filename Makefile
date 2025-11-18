@@ -6,12 +6,12 @@ SHELL := /bin/bash
 
 # Variables
 MAKE_PHP_8_4_EXE ?= php8.4
-MAKE_COMPOSER_2_EXE ?= /usr/local/bin/composer
+MAKE_COMPOSER_EXE ?= /usr/local/bin/composer
 MAKE_NPM_EXE ?= npm
 MAKE_NODE_EXE ?= node
 
 MAKE_PHP ?= ${MAKE_PHP_8_4_EXE}
-MAKE_COMPOSER ?= ${MAKE_PHP} ${MAKE_COMPOSER_2_EXE}
+MAKE_COMPOSER ?= ${MAKE_PHP} ${MAKE_COMPOSER_EXE}
 MAKE_NPM ?= ${MAKE_NPM_EXE}
 MAKE_NODE ?= ${MAKE_NODE_EXE}
 
@@ -98,6 +98,7 @@ help:
 .PHONY: local
 local: ./vendor
 	${MAKE_COMPOSER} run dump:development
+	${MAKE_COMPOSER} run cache:clear
 
 .PHONY: development
 development: local
@@ -219,8 +220,7 @@ update_composer: ./composer.json
 	${MAKE_COMPOSER} run composer:update
 
 # Dependencies
-./.phpunit.coverage/html:
-	${MAKE} test_phpunit
+./.phpunit.coverage/html: test_phpunit
 
 ./package-lock.json ./node_modules ./node_modules/.bin/eslint ./node_modules/.bin/prettier:
 	${MAKE} install

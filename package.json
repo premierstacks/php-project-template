@@ -1,6 +1,6 @@
 {
-  "name": "@premierstacks/php-template",
-  "description": "premierstacks php template",
+  "name": "@premierstacks/php-project-template",
+  "description": "premierstacks php project template",
   "keywords": [
     "tomchochola",
     "tomaschochola",
@@ -8,12 +8,12 @@
     "Tomáš Chochola",
     "premierstacks",
     "Premierstacks",
-    "php-template"
+    "php-project-template"
   ],
-  "homepage": "https://github.com/premierstacks/php-template",
+  "homepage": "https://github.com/premierstacks/php-project-template",
   "bugs": {
     "email": "chocholatom1997@gmail.com",
-    "url": "https://github.com/premierstacks/php-template/issues"
+    "url": "https://github.com/premierstacks/php-project-template/issues"
   },
   "license": "CC-BY-ND-4.0",
   "author": {
@@ -32,7 +32,7 @@
     "type": "github",
     "url": "https://github.com/sponsors/tomchochola"
   },
-  "repository": "github:premierstacks/php-template",
+  "repository": "github:premierstacks/php-project-template",
   "devDependencies": {
     "@premierstacks/eslint-stack": "github:premierstacks/eslint-stack#main",
     "@premierstacks/prettier-stack": "github:premierstacks/prettier-stack#main"
