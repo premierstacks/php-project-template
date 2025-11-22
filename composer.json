@@ -93,12 +93,12 @@
     "stan:phpstan": "@php phpstan analyse",
     "start:development": [
       "@putenv APP_ENV=local",
-      "php -S 0.0.0.0:8000 -t ./public/"
+      "php -S 0.0.0.0:8000 -t ./public"
     ],
     "start:coverage": "@php -S 0.0.0.0:8000 -t ./.phpunit.coverage/html",
     "test:phpunit": "@php phpunit",
     "post-install-cmd": "@cache:clear",
     "post-update-cmd": "@cache:clear",
-    "cache:clear": ""
+    "cache:clear": "@php -r 'apcu_clear_cache();'"
   }
 }
